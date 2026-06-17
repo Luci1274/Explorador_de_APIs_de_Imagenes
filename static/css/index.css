@@ -1,0 +1,23 @@
+
+/* Contenedores de contenido */
+.container {
+    background-color: #f7b2b2e1;     /* Mismo rosado que el body */
+    padding: 20px;                    /* 20px de espacio interno */
+    margin: 20px auto;                /* 20px de espacios externos */
+}
+
+/* Títulos principales (h1) */
+.titulo_index h1 {
+    text-align: center;               /* Texto centrado */
+    color: #333;                      /* Color gris oscuro */
+    font-size: 2em;                   /* Tamaño de fuente grande */
+    margin-bottom: 20px;              /* Espacio debajo del título */
+}
+
+/* Párrafos */
+.container p {
+    text-align: center;               /* Texto centrado */
+    color: #666;                      /* Texto gris */
+    font-family: 'Arial', sans-serif; /* Tipo de letra */
+    margin-top: 10px;                 /* 10px de espacio arriba */
+}

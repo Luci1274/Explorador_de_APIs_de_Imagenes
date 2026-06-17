@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navegacion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
+    {% block css %}{% endblock %}
+    <title>{% block title %}Mi sitio{% endblock %}</title>
+</head>
+<body>
+    <nav class="navegacion">
+        <h1 class="titulo_nav">Navegacion</h1>
+        <ul class="lista_nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">APIS de animales</a>
+                <ul>
+                    <li><a href="/imagenes/perros_gatos">Fotos Perros y Gatos</a></li>
+                    <li><a href="/imagenes/zorros">Fotos Zorros</a></li>
+                    <li><a href="/animales/zoo">informacion y fotos de Animales del Zoo</a></li>
+                    <li><a href="/animales/aleatorios">informacion y fotos de Animales Aleatorios</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="/chistes/aleatorios">Chistes Aleatorios</a></li>
+        </ul>
+    </nav>
+    
+    <header>
+        <div class="contenedor">
+            <div class="titulo_header">
+                <h1>Centro de prueba Apis</h1>
+            </div>
+            <div class="opciones_usuario">
+                {% if "user" in session %}
+                <div>
+                    <h2><a href="/logout">Cerrar sesion</a></h2>
+                </div>
+                {% else %}
+                <div>
+                    <h2><a href="/registro">Registrarse</a></h2>
+                </div>
+                <div>
+                    <h2><a href="/login">Iniciar sesion</a></h2>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+    {% block content %}
+    <!-- El contenido específico de cada página va aquí -->
+    {% endblock %}
+    
+
+    {% block js %}
+    <!-- Los scripts específicos de cada página van aquí -->
+    {% endblock %}
+
+<footer class="footer">
+    <p>&copy; 2024 Mi sitio. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
