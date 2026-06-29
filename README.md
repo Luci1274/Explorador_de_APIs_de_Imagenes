@@ -1,30 +1,89 @@
-# Explorador de APIs de Imágenes
+﻿# Explorador de APIs de Imágenes
 
-Este proyecto es una aplicación web desarrollada con el objetivo de explorar y practicar la integración entre un backend robusto y un frontend dinámico. La aplicación actúa como un puente que consume diversas APIs públicas de imágenes, permitiendo al usuario visualizar resultados obtenidos en tiempo real.
+Aplicación web desarrollada con **Flask** para consumir APIs públicas y mostrar contenido dinámico de animales y chistes.
 
-## Acerca del Proyecto
+## Descripción del proyecto
 
-La aplicación fue diseñada para comprender el flujo de trabajo entre **Python** (utilizando el framework **Flask**) y una interfaz web. El proyecto centraliza múltiples fuentes de contenido visual, permitiendo realizar consultas a servicios externos y renderizar el contenido de forma dinámica.
+Este proyecto es una práctica de integración backend/frontend en la que un servidor Flask gestiona varias rutas y APIs externas para ofrecer:
 
-El aspecto central de la práctica fue implementar una comunicación fluida donde el frontend solicita datos al servidor, y este gestiona la respuesta para actualizar la interfaz sin necesidad de recargar la página completa, ofreciendo una experiencia de navegación más ágil.
+* Imágenes de perros y gatos.
+* Imágenes de zorros.
+* Datos de animales del zoológico desde un archivo local JSON.
+* Información de animales aleatorios desde APIs públicas.
+* Chistes aleatorios traducidos al español.
+* Registro e inicio de sesión de usuarios con base de datos local SQLite.
 
-*Nota: Este proyecto fue originalmente desarrollado como parte de una práctica académica y se encontraba alojado en el siguiente repositorio: [https://github.com/Luci1274/HTML/tree/master/practica%20con%20flask](https://github.com/Luci1274/HTML/tree/master/practica%20con%20flask).*
+## Estructura del proyecto
 
-## Tecnologías Implementadas
+* `app.py`: aplicación Flask principal y definiciones de rutas.
+* `modulos/`: módulos de soporte para APIs, traducciones, autenticación y base de datos.
+* `templates/`: vistas HTML para cada sección.
+* `static/`: archivos CSS y JavaScript del frontend.
+* `data/animales.json`: datos locales de animales usados en la sección del zoológico.
 
-El desarrollo se llevó a cabo utilizando un stack tecnológico estándar para aplicaciones web:
+## Funcionalidades principales
 
-* **Backend:** Python con [Flask](https://flask.palletsprojects.com/), gestionando la lógica del servidor y la integración de las APIs.
-* **Frontend:**
-    * **HTML5:** Estructura semántica de los componentes.
-    * **CSS3:** Estilos enfocados en la presentación y el diseño visual.
-    * **JavaScript:** Lógica de cliente para la gestión de peticiones asíncronas y la actualización dinámica del DOM.
+* Rutas de páginas para mostrar diferentes secciones del sitio.
+* Consumo de APIs externas desde el backend con `requests`.
+* Traducción de texto usando MyMemory para chistes y datos de animales.
+* Manejo de usuarios con registro, login y sesión en Flask.
+* Base de datos SQLite local para guardar usuarios.
 
-## Objetivos de Aprendizaje
+## Dependencias
 
-Este proyecto fue desarrollado como una práctica para fortalecer los siguientes conceptos:
+Instala las dependencias necesarias con pip:
 
-* Consumo y procesamiento de datos en formato JSON desde APIs externas.
-* Arquitectura básica de aplicaciones web: conexión entre cliente y servidor.
-* Implementación de peticiones asíncronas para mejorar la interactividad.
-* Manejo de rutas y lógica de servidor en Flask.
+```bash
+pip install -r requirements.txt
+```
+
+Dependencias principales:
+
+* `Flask`
+* `requests`
+
+> Nota: `sqlite3`, `json` y `random` forman parte de la librería estándar de Python.
+
+## Instalación y ejecución
+
+1. Asegúrate de tener Python 3 instalado.
+2. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Inicializa la base de datos de usuarios si todavía no existe:
+   ```bash
+   python modulos/init_db.py
+   ```
+4. Ejecuta la aplicación:
+   ```bash
+   python app.py
+   ```
+5. Abre el navegador en `http://127.0.0.1:5000/`.
+
+## Rutas principales
+
+* `/` — Página principal.
+* `/imagenes/perros_gatos` — Ver fotos de perros y gatos.
+* `/imagenes/zorros` — Ver fotos de zorros.
+* `/animales/zoo` — Ver datos de animales del zoológico.
+* `/animales/aleatorios` — Ver animales aleatorios.
+* `/chistes/aleatorios` — Ver chistes aleatorios traducidos.
+* `/registro` — Registro de usuarios.
+* `/login` — Inicio de sesión.
+* `/logout` — Cerrar sesión.
+
+## Consideraciones
+
+* `app.secret_key` en `app.py` debe cambiarse por una clave segura en producción.
+* `app.run(debug=True)` está configurado para desarrollo. Cambia a `debug=False` o usa un servidor WSGI para despliegue.
+* Las APIs externas pueden fallar si sus servicios no están disponibles o sus URL cambian.
+
+## Uso local
+
+Para probar el proyecto de manera local:
+
+1. Ejecuta la base de datos de usuarios.
+2. Arranca la aplicación Flask.
+3. Regístrate y haz login para probar la autenticación.
+4. Navega por las distintas páginas y observa cómo el servidor obtiene datos de APIs y del archivo `data/animales.json`.
