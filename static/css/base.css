@@ -1,115 +1,141 @@
+:root {
+    --bg-1: #c94b4b;
+    --bg-2: #4b134f;
+    --text: #333;
+    --light: #fff;
+}
+
 /* Reset básico */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Estilo general */
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #c94b4b, #4b134f);
-    color:#333;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    color: var(--text);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+    grid-template-areas:
+        "nav header"
+        "nav main"
+        "nav footer";
 }
 
-header{
-    background:#333;
-    color:white;
-    padding:15px 0;
+header {
+    grid-area: header;
+    background: #333;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.contenedor{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.contenedor {
+    width: min(92%, 1200px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
 }
 
-/* TITULO CENTRADO REAL */
-.titulo_header{
-    text-align:center;
+.titulo_header {
+    text-align: center;
 }
 
-.titulo_header h1{
-    font-size:28px;
+.titulo_header h1 {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
 }
 
-/* BOTONES DERECHA */
-.opciones_usuario{
-    position:absolute;
-    right:0;
-    display:flex;
-    gap:10px;
+.opciones_usuario {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 
-.opciones_usuario div{
-    background:#555;
-    padding:6px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.opciones_usuario div:hover{
-    background:#777;
-}
-
-/* BOTONES USUARIO */
-.opciones_usuario{
-    display:flex;
-    gap:20px;
-}
-
-.opciones_usuario div{
+.opciones_usuario div {
     background-color: #4b4a4a;
-    color:#ffffff;
-    padding:8px 16px;
-    border-radius:6px;
-    cursor:pointer;
-    transition:0.3s;
-    font-size:14px;
+    color: #ffffff;
+    padding: 0.55rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.95rem;
 }
 
-.opciones_usuario div:hover{
-    background:#e3ecff;
-    transform:translateY(-2px);
+.opciones_usuario a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.opciones_usuario div:hover {
+    background: #e3ecff;
+    color: #333;
+    transform: translateY(-2px);
 }
 
 /* CONTENIDO PRINCIPAL */
-main{
-    width:90%;
-    max-width:1200px;
-    margin:30px auto;
-    flex:1;
+main {
+    grid-area: main;
+    width: min(92%, 1200px);
+    margin: 1.5rem auto 2rem;
 }
 
 /* FOOTER */
-.footer{
-    background-color:#333;
-    color:white;
-    text-align:center;
-    padding:15px 0;
-    margin-top:auto;
-    font-size:14px;
+.footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 1.25rem;
+    margin-top: auto;
+    font-size: 0.95rem;
 }
 
 /* RESPONSIVE */
-@media (max-width:768px){
-
-    .contenedor{
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
+@media (max-width: 900px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nav"
+            "header"
+            "main"
+            "footer";
     }
 
-    .opciones_usuario{
-        justify-content:center;
+    .contenedor {
+        grid-template-columns: 1fr;
+        justify-items: center;
     }
 
+    .opciones_usuario {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor {
+        width: 95%;
+        gap: 0.75rem;
+    }
+
+    main {
+        width: 95%;
+        margin: 1rem auto 1.5rem;
+    }
+
+    .opciones_usuario {
+        width: 100%;
+    }
+
+    .opciones_usuario div {
+        width: 100%;
+        text-align: center;
+    }
 }
